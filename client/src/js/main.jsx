@@ -15,7 +15,7 @@ import Login from './components/Login.jsx';
 var ParentComponent=require('./Components/ParentComponent');
 import FavView from './components/GetFavouriteRepositories.jsx';
 var GetFavouriteRepositories=require('./Components/GetFavouriteRepositories');
-
+import NavBar1 from './components/NavBar1.jsx'
 import signup from './components/signup.jsx';
 class MainComponent extends React.Component{
 
@@ -25,7 +25,6 @@ return (
 <div>
 
 
-
 <br/><br/><br/><br/>
 </div>
 )
@@ -33,10 +32,13 @@ return (
 }
 ReactDOM.render(
 <Router history={browserHistory}>
-				 <Route path="/" component={Login} />				 
+
+				<Route path="/" component={NavBar1}>
+				 <IndexRoute  component={Login} />
+				 </Route>
 		         <Route path = "/signup" component={signup} />
-             	 <Route path="/home" component={NavBar} >
-		             <IndexRoute component={MainComponent}/>
+             	 <Route path="/home" component={NavBar} >		            
+				 	 <IndexRoute component={MainComponent}/>
 		             <Route path="/search" component={ParentComponent}></Route>
 		             <Route path="/about" component={About}/>
 		             <Route path="/contact" component={Contact}/>

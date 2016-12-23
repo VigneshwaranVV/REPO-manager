@@ -9,7 +9,6 @@ if(req.isAuthenticated()){
 return next();
 }
 else{
-  alert("Please Login");
   res.json("authenticate failed")
   }
 }
@@ -28,36 +27,25 @@ req.session.destroy(function(err) {
 
 
 
-  router.post("/add",function(req,res) {
-    console.log("inside add route"+req.body+"@@@@@@");
-    if(req.body) {
-    var uservar=new user();
-    uservar.username=req.body.username;
-    uservar.password=req.body.password;
-    uservar.save(function(err){
-    if(err) {
-
-      res.send(err);
-    }
-    else  {
-    res.send("inserted");
-    }
-      });
-    }
-    });
-
-
-router.post("/login2",function(req,res){
-
-  console.log("welcome");
-  res.send("inside post login");
-});
+router.post("/add",function(req,res) {
+ if(req.body) {
+ var uservar=new user();
+   //console.log(uservar);
+ uservar.username=req.body.username;
+ uservar.password=req.body.password;
+ uservar.save(function(err){
+ if(err) {
+   res.send(err);
+ } 
+ else  {
+ res.send("Data inserted");
+ }
+   });
+ }
+ });
 
 
-
-
-
-router.post("/login",function(req,res){
+router.post("/login",passport.authenticate('local'),function(req,res){
 
   console.log("welcome"+Object.keys(req));
   res.send("inside post login");

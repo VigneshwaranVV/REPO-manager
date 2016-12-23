@@ -22,12 +22,12 @@ pass(epass){
   }
     console.log("login clicked");
     $.ajax({
-      url:"http://localhost:8342/users/login2",
+      url:"http://localhost:8342/users/add",
       type: 'POST',
       data : signup,
       success: function(data){
       console.log("allow login");
-     browserHistory.push('/home');
+     browserHistory.push('/');
        }.bind(this),
       error:function(err)
       {
