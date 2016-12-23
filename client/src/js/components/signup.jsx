@@ -16,21 +16,22 @@ pass(epass){
   this.setState({password:epass.target.value});
 }
   check(){
-  var login={
+  var signup={
     username:this.state.username,
     password:this.state.password
   }
-    console.log("signup clicked");
+    console.log("login clicked");
     $.ajax({
-      url:"http://localhost:8342/users/add",
+      url:"http://localhost:8342/users/login2",
       type: 'POST',
-      data : login,
+      data : signup,
       success: function(data){
-      console.log("register success");
-     browserHistory.push('/Login');
+      console.log("allow login");
+     browserHistory.push('/home');
        }.bind(this),
       error:function(err)
       {
+      console.log("error add ajax");
         console.log(err+"-00000000----");
       }.bind(this)
     });

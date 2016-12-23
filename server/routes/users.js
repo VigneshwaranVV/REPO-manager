@@ -9,6 +9,7 @@ if(req.isAuthenticated()){
 return next();
 }
 else{
+  alert("Please Login");
   res.json("authenticate failed")
   }
 }
@@ -44,6 +45,16 @@ req.session.destroy(function(err) {
       });
     }
     });
+
+
+router.post("/login2",function(req,res){
+
+  console.log("welcome");
+  res.send("inside post login");
+});
+
+
+
 
 
 router.post("/login",function(req,res){

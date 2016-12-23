@@ -23,24 +23,26 @@ render(){
 
 return (
 <div>
-<NavBar />
+
+
+
 <br/><br/><br/><br/>
-    {this.props.children}
 </div>
 )
 }
 }
 ReactDOM.render(
-<Router history={hashHistory}>
-             <Route path="/" component={MainComponent} >
-	             <Route path="/home" component={MainComponent}/>
-	             <Route path="/search" component={ParentComponent}></Route>
-	             <Route path="/about" component={About}/>
-	             <Route path="/contact" component={Contact}/>
-	             <Route path = "/Login" component={Login} />
-	             <Route path = "/signup" component={signup} />
-	             <Route path="/getFavourites" component={GetFavouriteRepositories}></Route>
-	             <Route path="/view" component={FavView}/>
-</Route>	
+<Router history={browserHistory}>
+				 <Route path="/" component={Login} />				 
+		         <Route path = "/signup" component={signup} />
+             	 <Route path="/home" component={NavBar} >
+		             <IndexRoute component={MainComponent}/>
+		             <Route path="/search" component={ParentComponent}></Route>
+		             <Route path="/about" component={About}/>
+		             <Route path="/contact" component={Contact}/>
+		             <Route path = "/Login" component={Login} />
+		             <Route path="/getFavourites" component={GetFavouriteRepositories}></Route>
+		             <Route path="/view" component={FavView}/>
+				</Route>	
 
 </Router>,document.getElementById('content'));

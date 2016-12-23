@@ -1,15 +1,8 @@
 var React = require('react');
 var {Link} = require('react-router');
-var {hashHistory}=require('react-router');
+var {browserHistory}=require('react-router');
 export default class NavBar extends React.Component{
 
-loginhandle(){
-if(true)
-  return <li><Link to ="/Login">Login</Link></li>
-else
-  return <li>{<button onClick={this.logout}>Logout</button>}</li>
-
-}
 logout(){
 console.log("logout");
    $.ajax({
@@ -17,7 +10,7 @@ console.log("logout");
       type: 'GET',
       success: function(data){
       console.log("logout ajax");
-      hashHistory.push('/Login');
+      browserHistory.push('/Login');
        }.bind(this),
       error:function(err)
       {
@@ -42,16 +35,13 @@ render() {
            <li><Link to="/search">search Repo</Link></li>
            <li><Link to="/getFavourites">View Saved repo</Link></li>
            <li><Link to="/contact">Contact Us</Link></li>
-           <li><Link to="/about">About Us{this.props.data}</Link></li> 
-           <li>{<button onClick={this.logout}>Logout</button>}</li>
+           <li><Link to="/about">About Us</Link></li> 
+           <li><Link to={this.logout}>LogOut</Link></li> 
            </ul>
-            <ul className="nav navbar-nav navbar-right"> 
-           <li ><Link to="/signup">Register</Link></li>          
-          {this.loginhandle()}
-        </ul>
-
+            
       </div>
      </nav>
+     {this.props.children}
    </div>
  );
 }

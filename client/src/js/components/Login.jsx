@@ -1,5 +1,5 @@
 import React from 'react';
-import {hashHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import Navbar from '../components/Navbar';
 export default class Login extends React.Component{
   constructor(){
@@ -16,6 +16,13 @@ user(euser){
 pass(epass){
   this.setState({password:epass.target.value});
 }
+
+sup(){
+ browserHistory.push('/signup');
+}
+
+
+
   check(){
   var login={
     username:this.state.username,
@@ -28,7 +35,7 @@ pass(epass){
       data : login,
       success: function(data){
       console.log("allow login");
-     hashHistory.push('/home');
+     browserHistory.push('/home');
        }.bind(this),
       error:function(err)
       {
@@ -47,7 +54,8 @@ render(){
       <div>
         <input type="text" name="user" placeholder="Username" onChange={this.user.bind(this)}/><br/>
         <input type="password" name="pass" placeholder="Password" onChange={this.pass.bind(this)}/><br/>
-        <input type="button" name="login" className="login login-submit" value="Login" onClick={this.check.bind(this)} />
+        <input type="button" name="login" className="login login-submit" value="Login" onClick={this.check.bind(this)} />&nbsp;
+        <input type="button" name="SignUp" className="login login-submit" value="SignUp" onClick={this.sup} />
       </div>
       
     </div>
